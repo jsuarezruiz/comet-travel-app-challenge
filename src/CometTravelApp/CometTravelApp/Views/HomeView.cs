@@ -54,6 +54,8 @@ public class HomeView : View
                 .ClipShape(new RoundedRectangle(12))
                 .Placeholder(()=>"Search Destination")
                 .Margin(right: 12),
+            /*
+            // TODO: Fix IconImageSource issue.
             new ZStack
             {
                 new Image()
@@ -61,6 +63,7 @@ public class HomeView : View
             .Background(Color.FromArgb("#31ACF8"))
             .Frame(height: 48, width: 48)
             .ClipShape(new RoundedRectangle(18))
+            */
         }
         .Margin(new Thickness(0, 12));
     }
@@ -74,22 +77,42 @@ public class HomeView : View
             horizontalRecommendedStack.Add(
                 new ZStack
                 {
+                    // Destination Background Image
                     new Image(destination.Image)
                         .Aspect(Aspect.AspectFill)
                         .ClipShape(new RoundedRectangle(36)),
+                    // Destination Price
+                    /*
+                    // TODO: Fix Margin issue.
+                    new VStack
+                    {
+                        new Text($"${destination.Price}")
+                            .TextColor(Colors.White)
+                            .FontSize(14)
+                            .FontFamily("Rockolf Bold")
+                            .FontSize(14)
+                            .FontWeight(FontWeight.Bold),
+                    }
+                    .Background(Color.FromArgb("#67AEE9"))
+                    .ClipShape(new RoundedRectangle(12))    
+                    .Frame(alignment: Alignment.Top)
+                    .Margin(new Thickness(12, 12, 0, 0)),
+                    */
+                    // Destination Name
                     new VStack {
                         new Text(destination.Name)
                             .TextColor(Colors.White)
                             .FontFamily("Rockolf Bold")
                             .FontSize(18)
-                            .FontWeight(FontWeight.Bold),
+                            .FontWeight(FontWeight.Bold)
+                            .Shadow(radius: 6),
                         new Text(destination.Place)
                             .TextColor(Colors.White)
                             .FontFamily("Rockolf")
                             .FontSize(14),
                     }
-                    .Frame(alignment: Alignment.BottomTrailing)
-                    .Padding(new Thickness(12, 0, 0, 24))
+                    .Frame(alignment: Alignment.Bottom)
+                    .Padding(new Thickness(10, 170, 0, 30))
                 }
                 .Frame(height: 250, width: 200)
             );
@@ -118,6 +141,7 @@ public class HomeView : View
         {
             horizontalTopStack.Add(new ZStack
             {
+                // Destination Background Image
                 new Image(destination.Image)       
                     .Aspect(Aspect.AspectFill)
                     .ClipShape(new RoundedRectangle(24))
@@ -133,7 +157,10 @@ public class HomeView : View
                 .FontSize(16)
                 .FontWeight(FontWeight.Bold)
                 .Margin(new Thickness(0, 6)),
-            horizontalTopStack
+                 
+            new ScrollView(Orientation.Horizontal) {
+                horizontalTopStack
+            }
         };
     }
 
