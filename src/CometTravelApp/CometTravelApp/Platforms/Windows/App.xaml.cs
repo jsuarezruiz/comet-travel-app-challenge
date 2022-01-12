@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.Maui.Hosting;
+using Microsoft.UI.Xaml;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -19,13 +20,7 @@ public partial class App : MauiWinUIApplication
         this.InitializeComponent();
     }
 
-        protected override MauiApp CreateMauiApp() => App.CreateMauiApp();
+    protected override MauiApp CreateMauiApp() => CometTravelApp.App.CreateMauiApp();
 
-    protected override void OnLaunched(LaunchActivatedEventArgs args)
-    {
-        base.OnLaunched(args);
-
-        Platform.OnLaunched(args);
-    }
 }
 

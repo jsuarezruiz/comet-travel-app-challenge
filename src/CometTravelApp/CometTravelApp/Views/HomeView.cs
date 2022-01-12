@@ -10,15 +10,16 @@ public class HomeView : View
     readonly Destinations destinations = new();
 
     [Body]
-    View body()
-        => new VStack {
+    View body() => new ScrollView {
+        new VStack(Comet.HorizontalAlignment.Leading) {
             ProfileView(),
             SearchView(),
             RecommendedDestinationsView(),
             TopDestinationsView()
         }
         .Background(Color.FromArgb("#F9FAFC"))
-        .Padding(30);
+        .Padding(30)
+     };
 
     View ProfileView() => new HStack
     {
@@ -30,7 +31,7 @@ public class HomeView : View
                 .FontFamily("Rockolf")
                 .FontSize(14),
             new Text(()=> "Arya Wijaya")
-                .TextColor(Colors.Black)
+                .Color(Colors.Black)
                 .FontFamily("Rockolf Bold")
                 .FontSize(18)
                 .FontWeight(FontWeight.Bold),
@@ -43,11 +44,9 @@ public class HomeView : View
                 .Aspect(Aspect.AspectFit)
                 .Margin(right: 12)
         }
-    };
+    }.FitVertical();
 
-    View SearchView()
-    {
-        return new HStack
+    View SearchView() => new HStack
         {
             new SearchBar()
                 .Background(Colors.White)
@@ -66,103 +65,76 @@ public class HomeView : View
             */
         }
         .Margin(new Thickness(0, 12));
-    }
 
-    View RecommendedDestinationsView()
-    {
-        var horizontalRecommendedStack = new HStack();
-
-        foreach (Destination destination in destinations.Recommended)
+    View RecommendedDestinationsView() => new VStack
         {
-            horizontalRecommendedStack.Add(
-                new ZStack
+            new Text(()=> "Recommended")
+                .Color(Colors.Black)
+                .FontFamily("Rockolf Bold")
+                .FontSize(20)
+                .FontWeight(FontWeight.Bold)
+                .Margin(new Thickness(0, 6)),
+            new ScrollView(Orientation.Horizontal) {
+                new HStack
+                {
+                     destinations.Recommended.Select(destination => new ZStack
                 {
                     // Destination Background Image
                     new Image(destination.Image)
                         .Aspect(Aspect.AspectFill)
                         .ClipShape(new RoundedRectangle(36)),
-                    // Destination Price
-                    /*
-                    // TODO: Fix Margin issue.
-                    new VStack
-                    {
-                        new Text($"${destination.Price}")
-                            .TextColor(Colors.White)
-                            .FontSize(14)
-                            .FontFamily("Rockolf Bold")
-                            .FontSize(14)
-                            .FontWeight(FontWeight.Bold),
-                    }
-                    .Background(Color.FromArgb("#67AEE9"))
-                    .ClipShape(new RoundedRectangle(12))    
-                    .Frame(alignment: Alignment.Top)
-                    .Margin(new Thickness(12, 12, 0, 0)),
-                    */
-                    // Destination Name
-                    new VStack {
+                    new VStack(Comet.HorizontalAlignment.Leading) {
+                        new VStack
+                        {
+                            new Text(() => $"{destination.Price:C}  ")
+                                .Color(Colors.White)
+                                .FitHorizontal()
+                                .FontSize(14)
+                                .FontFamily("Rockolf Bold")
+                                .FontSize(14)
+                                .FontWeight(FontWeight.Bold),
+                        }.FitHorizontal().Frame(alignment: Alignment.Trailing)
+                            .Background(Color.FromArgb("#67AEE9"))
+                            .ClipShape(new RoundedRectangle(12))
+                            .Padding(6)
+                            .Margin(12), 
+
+                        new Spacer(),
                         new Text(destination.Name)
-                            .TextColor(Colors.White)
+                            .Color(Colors.White)
                             .FontFamily("Rockolf Bold")
                             .FontSize(18)
                             .FontWeight(FontWeight.Bold)
                             .Shadow(radius: 6),
                         new Text(destination.Place)
-                            .TextColor(Colors.White)
+                            .Color(Colors.White)
                             .FontFamily("Rockolf")
                             .FontSize(14),
                     }
-                    .Frame(alignment: Alignment.Bottom)
-                    .Padding(new Thickness(10, 170, 0, 30))
-                }
-                .Frame(height: 250, width: 200)
-            );
-        }
-
-        return new VStack
-        {
-            new Text(()=> "Recommended")
-                .TextColor(Colors.Black)
-                .FontFamily("Rockolf Bold")
-                .FontSize(20)
-                .FontWeight(FontWeight.Bold)
-                .Margin(new Thickness(0, 6)),
-            new ScrollView(Orientation.Horizontal) { 
-                horizontalRecommendedStack 
+                    .Padding(new Thickness(16, 0, 0, 16))
+                })
+                }.Frame(height: 250, width: 200)
             }
         };
-    }
-
-    View TopDestinationsView()
-    {
-        var horizontalTopStack = new HStack()
-            .Frame(height: 60);
-
-        foreach (Destination destination in destinations.Top)
-        {
-            horizontalTopStack.Add(new ZStack
-            {
-                // Destination Background Image
-                new Image(destination.Image)       
-                    .Aspect(Aspect.AspectFill)
-                    .ClipShape(new RoundedRectangle(24))
-                    .Frame(height: 60, width: 60, alignment: Alignment.Center),
-            });
-        }
-
-        return new VStack
+    View TopDestinationsView() => new VStack
         {
             new Text(()=> "Top Destinations")
-                .TextColor(Colors.Black)
+                .Color(Colors.Black)
                 .FontFamily("Rockolf Bold")
                 .FontSize(16)
                 .FontWeight(FontWeight.Bold)
                 .Margin(new Thickness(0, 6)),
-                 
+
             new ScrollView(Orientation.Horizontal) {
-                horizontalTopStack
+                 new HStack{
+                destinations.Top.Select(destination => new Image(destination.Image)
+                    .Aspect(Aspect.AspectFill)
+                    .ClipShape(new RoundedRectangle(24))
+                    .Frame(height: 60, width: 60, alignment: Alignment.Center)
+
+                )}.Frame(height: 60)
             }
         };
-    }
 
     public class Destinations : BindingObject
     {
