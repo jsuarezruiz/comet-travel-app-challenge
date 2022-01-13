@@ -9,6 +9,7 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+		<MauiVersion>6.0.101-preview.11.2349</MauiVersion>
 		<!-- Display name -->
 		<ApplicationTitle>CometTravelApp</ApplicationTitle>
 		<!-- App Identifier -->

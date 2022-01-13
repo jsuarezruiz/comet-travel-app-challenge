@@ -93,12 +93,13 @@ public class HomeView : View
                                 .FontFamily("Rockolf Bold")
                                 .FontSize(14)
                                 .FontWeight(FontWeight.Bold),
-                        }.FitHorizontal().Frame(alignment: Alignment.Trailing)
-                            .Background(Color.FromArgb("#67AEE9"))
-                            .ClipShape(new RoundedRectangle(12))
-                            .Padding(6)
-                            .Margin(12), 
-
+                        }
+                        .FitHorizontal()
+                        .Frame(alignment: Alignment.Trailing)
+                        .Background(Color.FromArgb("#67AEE9"))
+                        .ClipShape(new RoundedRectangle(12))
+                        .Padding(6)
+                        .Margin(12), 
                         new Spacer(),
                         new Text(destination.Name)
                             .Color(Colors.White)
@@ -113,7 +114,8 @@ public class HomeView : View
                     }
                     .Padding(new Thickness(16, 0, 0, 16))
                 })
-                }.Frame(height: 250, width: 200)
+                }
+                .Frame(height: 250, width: 200)
             }
         };
     View TopDestinationsView() => new VStack
@@ -132,7 +134,8 @@ public class HomeView : View
                     .ClipShape(new RoundedRectangle(24))
                     .Frame(height: 60, width: 60, alignment: Alignment.Center)
 
-                )}.Frame(height: 60)
+                )}
+                 .Frame(height: 60)
             }
         };
 
@@ -157,4 +160,3 @@ public class HomeView : View
         }
     }
 }
-
