@@ -11,7 +11,7 @@ public class HomeView : View
 
     [Body]
     View body() => new ScrollView {
-        new VStack(Comet.HorizontalAlignment.Leading) {
+        new VStack(LayoutAlignment.Start) {
             ProfileView(),
             SearchView(),
             RecommendedDestinationsView(),
@@ -26,7 +26,7 @@ public class HomeView : View
         new Image(()=>"profile.png")
             .ClipShape(new Ellipse())
             .Frame(alignment: Alignment.Center),
-        new VStack(Comet.HorizontalAlignment.Leading) {
+        new VStack(LayoutAlignment.Start) {
             new Text(()=> "Welcome")
                 .FontFamily("Rockolf")
                 .FontSize(14),
@@ -36,14 +36,13 @@ public class HomeView : View
                 .FontSize(18)
                 .FontWeight(FontWeight.Bold),
         }
-        .FillHorizontal()
         .Margin(left: 12),
-        new VStack(Comet.HorizontalAlignment.Trailing) {
-            new Image(()=>"bell.png")
-                .Frame(height: 48, width: 48, alignment: Alignment.Center)
-                .Aspect(Aspect.AspectFit)
-                .Margin(right: 12)
-        }
+        new Spacer(),
+        new Image(()=>"bell.png")
+            .Frame(height: 48, width: 48)
+            .Aspect(Aspect.AspectFit)
+            .Margin(right: 12)
+        
     }.FitVertical();
 
     View SearchView() => new HStack
@@ -83,10 +82,10 @@ public class HomeView : View
                     new Image(destination.Image)
                         .Aspect(Aspect.AspectFill)
                         .ClipShape(new RoundedRectangle(36)),
-                    new VStack(Comet.HorizontalAlignment.Leading) {
+                    new VStack(LayoutAlignment.Start) {
                         new VStack
                         {
-                            new Text(() => $"{destination.Price:C}  ")
+                            new Text(() => $"{destination.Price:C}")
                                 .Color(Colors.White)
                                 .FitHorizontal()
                                 .FontSize(14)
