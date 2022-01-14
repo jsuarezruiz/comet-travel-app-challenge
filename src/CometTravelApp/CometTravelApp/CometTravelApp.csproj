@@ -57,7 +57,7 @@
 	  <None Remove="Resources\Images\profile.png" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Clancey.Comet" Version="0.3.438-beta" />
+		<PackageReference Include="Clancey.Comet" Version="0.3.443-beta" />
 		<PackageReference Include="Reloadify3000" Version="1.0.8" />
 	</ItemGroup>
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionCometTravelAppHideInfoBar="True" /></VisualStudio></ProjectExtensions>
