@@ -25,7 +25,7 @@ public class HomeView : View
     {
         new Image(()=>"profile.png")
             .ClipShape(new Ellipse())
-            .Frame(alignment: Alignment.Center),
+            .Alignment(Alignment.Center),
         new VStack(LayoutAlignment.Start) {
             new Text(()=> "Welcome")
                 .FontFamily("Rockolf")
@@ -94,7 +94,7 @@ public class HomeView : View
                                     .FontWeight(FontWeight.Bold),
                             }
                             .FitHorizontal()
-                            .Frame(alignment: Alignment.Trailing)
+                            .Alignment(Alignment.Trailing)
                             .Background(Color.FromArgb("#67AEE9"))
                             .ClipShape(new RoundedRectangle(12))
                             .Padding(6)
@@ -134,7 +134,8 @@ public class HomeView : View
                         new Image(destination.Image)
                             .Aspect(Aspect.AspectFill)
                             .ClipShape(new RoundedRectangle(24))
-                            .Frame(height: 60, width: 60, alignment: Alignment.Center),
+                            .Frame(height: 60, width: 60)
+                            .Alignment(Alignment.Center),
                         new VStack
                         {
                             new Text(destination.Place)
@@ -152,7 +153,8 @@ public class HomeView : View
                     }
                     .Background(Colors.White)
                     .ClipShape(new RoundedRectangle(12))
-                    .Frame(height: 80, width: 180, alignment: Alignment.Leading)
+                    .Frame(height: 80, width: 180)
+                    .Alignment(Alignment.Leading)
                     .Padding(6),
                     })
                 }
