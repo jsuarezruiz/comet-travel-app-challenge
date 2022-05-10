@@ -25,7 +25,7 @@ public class HomeView : View
     {
         new Image(()=>"profile.png")
             .ClipShape(new Ellipse())
-            .Alignment(Alignment.Center),
+            .HorizontalLayoutAlignment(LayoutAlignment.End),
         new VStack(LayoutAlignment.Start) {
             new Text(()=> "Welcome")
                 .FontFamily("Rockolf")
@@ -90,11 +90,9 @@ public class HomeView : View
                                     .FitHorizontal()
                                     .FontSize(14)
                                     .FontFamily("Rockolf Bold")
-                                    .FontSize(14)
                                     .FontWeight(FontWeight.Bold),
                             }
-                            .FitHorizontal()
-                            .Alignment(Alignment.Trailing)
+                            .HorizontalLayoutAlignment(LayoutAlignment.End)
                             .Background(Color.FromArgb("#67AEE9"))
                             .ClipShape(new RoundedRectangle(12))
                             .Padding(6)
@@ -112,9 +110,8 @@ public class HomeView : View
                                 .FontSize(14),
                         }
                         .Padding(new Thickness(16, 0, 0, 0))
-                    })
+                    }.Frame(height: 250, width: 200))
                 }
-                .Frame(height: 250, width: 200)
             }
         };
     View TopDestinationsView() => new VStack
@@ -135,7 +132,7 @@ public class HomeView : View
                             .Aspect(Aspect.AspectFill)
                             .ClipShape(new RoundedRectangle(24))
                             .Frame(height: 60, width: 60)
-                            .Alignment(Alignment.Center),
+                            .VerticalLayoutAlignment(LayoutAlignment.Center),
                         new VStack
                         {
                             new Text(destination.Place)
@@ -154,7 +151,7 @@ public class HomeView : View
                     .Background(Colors.White)
                     .ClipShape(new RoundedRectangle(12))
                     .Frame(height: 80, width: 180)
-                    .Alignment(Alignment.Leading)
+                    .VerticalLayoutAlignment(LayoutAlignment.Start)
                     .Padding(6),
                     })
                 }
